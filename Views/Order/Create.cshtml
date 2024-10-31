@@ -1,0 +1,81 @@
+﻿@model bootstrap_project.Models.Order
+
+@{
+    ViewData["Title"] = "Добавить Заказ";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        Ошибка при добавлении заказа. Проверьте введенные данные.
+    </div>
+}
+
+<form asp-action="Create" method="post" data-unobtrusive-validation="true">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductId"></label>
+        <select asp-for="ProductId" class="form-control" asp-items="@(new SelectList(ViewBag.Products, "Id", "Name"))"></select>
+        <span asp-validation-for="ProductId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить Заказ</button>
+    <a asp-action="Index" class="btn btn-secondary">Вернуться к спискам заказов</a> <!-- Кнопка возврата -->
+</form>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
