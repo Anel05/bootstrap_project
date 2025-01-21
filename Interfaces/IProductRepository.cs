@@ -6,10 +6,10 @@ namespace bootstrap_project.Interfaces
 {
     public interface IProductRepository
     {
-        Task<List<Product>> GetAllProductsAsync(); // Получить все продукты
-        Task AddProductAsync(Product product);     // Добавить продукт
-        Task SaveChangesAsync();                   // Сохранить изменения в базе данных
-        Task<IEnumerable<Product>> GetAllAsync();  // Исправлено: тип возвращаемого значения
+        Task<List<Product>> GetAllProductsAsync(); 
+        Task AddProductAsync(Product product);     
+        Task SaveChangesAsync();                   
+        Task<IEnumerable<Product>> GetAllAsync();  
     }
 }
 

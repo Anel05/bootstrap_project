@@ -19,7 +19,7 @@ namespace bootstrap_project.Models
         [Required(ErrorMessage = "Выберите продукт.")]
         public int ProductId { get; set; }
 
-        // Навигационное свойство, если необходимо
+        // Навигационное свойство
         public virtual Product Product { get; set; }
     }
 

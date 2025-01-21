@@ -7,30 +7,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace bootstrap_project.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class OrderRepository(AppDbContext context) : IOrderRepository
     {
-        private readonly AppDbContext _context;
-
-        public OrderRepository(AppDbContext context)
-        {
-            _context = context;
-        }
 
         public async Task<Order> AddOrderAsync(Order order)
         {
-            await _context.Orders.AddAsync(order);
-            // Убрали вызов SaveChangesAsync здесь
+            await context.Orders.AddAsync(order);     
             return order;
         }
 
         public async Task<IEnumerable<Order>> GetAllOrdersAsync()
         {
-            return await _context.Orders.Include(o => o.Product).ToListAsync(); // Включаем связанные данные о продукте
+            return await context.Orders.Include(o => o.Product).ToListAsync(); // Включаем связанные данные о продукте
         }
 
         public async Task SaveChangesAsync()
         {
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
     }
 }

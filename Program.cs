@@ -6,15 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Добавление DbContext с PostgreSQL
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Добавление сервисов для DI
+
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-// Настройка файлов cookie
+
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true; // Требуется подтверждение для использования файлов cookie
@@ -23,6 +23,8 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 });
 
 builder.Services.AddControllersWithViews();
+
+// builder.Services.AddHttpClient();
 
 // Добавляем валидацию через DataAnnotations
 builder.Services.AddRazorPages().AddViewOptions(options => {

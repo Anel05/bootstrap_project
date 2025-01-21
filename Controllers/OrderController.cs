@@ -19,6 +19,7 @@ namespace bootstrap_project.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //HttpClient()
             var orders = await _orderRepository.GetAllOrdersAsync();
             return View(orders);
         }
